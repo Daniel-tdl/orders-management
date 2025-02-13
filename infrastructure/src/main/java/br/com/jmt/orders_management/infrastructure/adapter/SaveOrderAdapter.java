@@ -50,13 +50,6 @@ public class SaveOrderAdapter implements SaveOrderPort, GetOrderPort {
     public OrderDto getOrders(Integer page, Integer size) {
         PageRequest pageRequest = PageRequest.of(page, size);
         var entities = orderRepository.findAll(pageRequest);
-//        var ids = entities.getContent().stream()
-//                .map(OrderEntity::getProducts)
-//                .flatMap(Collection::stream)
-//                .mapToDouble(ProductEntity::getId)
-//                .collect()
-
-//        var products = productRepository.findByIdIn(List.of(1));
         return buildOrderResponseToDTO(entities);
     }
 

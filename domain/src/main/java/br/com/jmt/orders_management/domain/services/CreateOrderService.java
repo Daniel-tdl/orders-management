@@ -16,7 +16,7 @@ import java.util.Objects;
 @Slf4j
 @Service
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
-public class CreateCreateOrderService implements CreateOrderUseCase {
+public class CreateOrderService implements CreateOrderUseCase {
 
     private final OrderPort orderPort;
     private final OrderMapper orderMapper;

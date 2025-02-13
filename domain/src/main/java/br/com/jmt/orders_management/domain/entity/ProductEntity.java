@@ -2,10 +2,7 @@ package br.com.jmt.orders_management.domain.entity;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.With;
+import lombok.*;
 
 import static com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL;
 
@@ -14,6 +11,7 @@ import static com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL;
 @JsonInclude(NON_NULL)
 @With
 @Data
+@Builder
 @Entity
 @Table(name = "produto")
 public class ProductEntity {

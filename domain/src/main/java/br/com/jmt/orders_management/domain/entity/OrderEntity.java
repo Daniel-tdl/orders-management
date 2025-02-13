@@ -3,10 +3,7 @@ package br.com.jmt.orders_management.domain.entity;
 import br.com.jmt.orders_management.domain.entity.base.BaseEntity;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.With;
+import lombok.*;
 
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -20,7 +17,8 @@ import static com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL;
 @NoArgsConstructor
 @JsonInclude(NON_NULL)
 @With
-@Data
+@Getter
+@Builder
 @Entity
 @Table(name = "Pedido")
 public class OrderEntity extends BaseEntity implements Serializable {
