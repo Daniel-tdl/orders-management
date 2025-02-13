@@ -2,6 +2,9 @@ server:
   port: 8080
 
 spring:
+  mvc:
+    converters:
+      preferred-json-mapper: jackson
   jpa:
     hibernate:
       ddl-auto: none
