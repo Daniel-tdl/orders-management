@@ -11,6 +11,7 @@ import lombok.With;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Set;
 
 import static com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL;
@@ -37,6 +38,11 @@ public class OrderEntity extends BaseEntity implements Serializable {
     @Column(name = "total_preco")
     private Double totalPrice;
 
-    @OneToMany(mappedBy="order")
-    private Set<ProductEntity> products;
+    @OneToMany(
+            mappedBy = "order",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true,
+            fetch = FetchType.LAZY
+    )
+    private List<ProductEntity> products;
 }

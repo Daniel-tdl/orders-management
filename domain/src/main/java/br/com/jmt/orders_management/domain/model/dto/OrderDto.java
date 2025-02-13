@@ -45,7 +45,7 @@ public class OrderDto {
 
             private String code;
             private String description;
-            private Double value;
+            private Double price;
         }
     }
 }

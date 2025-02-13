@@ -6,7 +6,7 @@ spring:
     converters:
       preferred-json-mapper: jackson
   jpa:
-    show-sql: true
+#    show-sql: true
     hibernate:
       ddl-auto: update
     properties:
@@ -28,4 +28,14 @@ spring:
     port: 5672
     username: rabbitmq
     password: rabbitmq
+    listener:
+      simple:
+        default-requeue-rejected: false
+        retry:
+          enabled: true
+          max-interval: 5s
+          max-attempts: 3
+          multiplier: '2'
+
+
 

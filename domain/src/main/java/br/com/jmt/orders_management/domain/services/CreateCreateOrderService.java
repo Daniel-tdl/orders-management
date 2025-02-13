@@ -3,7 +3,7 @@ package br.com.jmt.orders_management.domain.services;
 import br.com.jmt.orders_management.domain.mapper.OrderMapper;
 import br.com.jmt.orders_management.domain.model.event.OrderEvent;
 import br.com.jmt.orders_management.domain.model.request.OrderRequest;
-import br.com.jmt.orders_management.domain.ports.in.OrderUseCase;
+import br.com.jmt.orders_management.domain.ports.in.CreateOrderUseCase;
 import br.com.jmt.orders_management.domain.ports.out.OrderPort;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -16,7 +16,7 @@ import java.util.Objects;
 @Slf4j
 @Service
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
-public class CreateOrderService implements OrderUseCase {
+public class CreateCreateOrderService implements CreateOrderUseCase {
 
     private final OrderPort orderPort;
     private final OrderMapper orderMapper;

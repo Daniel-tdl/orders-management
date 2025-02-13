@@ -2,6 +2,9 @@ package br.com.jmt.orders_management.application.config;
 
 import br.com.jmt.orders_management.domain.util.QueueConstant;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.amqp.core.Binding;
+import org.springframework.amqp.core.BindingBuilder;
+import org.springframework.amqp.core.FanoutExchange;
 import org.springframework.amqp.core.Queue;
 import org.springframework.amqp.rabbit.connection.ConnectionFactory;
 import org.springframework.amqp.rabbit.core.RabbitAdmin;
@@ -12,12 +15,47 @@ import org.springframework.context.ApplicationListener;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import java.util.HashMap;
+import java.util.Map;
+
 @Configuration
 public class RabbitMQConfig {
 
     @Bean
+    public FanoutExchange fanoutExchange() {
+        return new FanoutExchange(QueueConstant.CREATE_ORDER_EXCHANGE);
+    }
+
+    @Bean
+    public FanoutExchange fanoutExchangeDLQ() {
+        return new FanoutExchange(QueueConstant.CREATE_ORDER_EXCHANGE_DLQ);
+    }
+
+    @Bean
     public Queue queue() {
-        return new Queue(QueueConstant.CREATE_ORDER);
+        Map<String, Object> args = new HashMap<>();
+        args.put("x-dead-letter-exchange", QueueConstant.CREATE_ORDER_EXCHANGE_DLQ);
+
+        return new Queue(QueueConstant.CREATE_ORDER, true, false, false, args);
+    }
+
+    @Bean
+    public Binding binding() {
+        Queue queue = queue();
+        FanoutExchange exchange = new FanoutExchange(QueueConstant.CREATE_ORDER_EXCHANGE);
+        return BindingBuilder.bind(queue).to(exchange);
+    }
+
+    @Bean
+    public Queue queueDLQ() {
+        return new Queue(QueueConstant.CREATE_ORDER_DLQ);
+    }
+
+    @Bean
+    public Binding bindingDLQ() {
+        Queue queue = queueDLQ();
+        FanoutExchange exchange = new FanoutExchange(QueueConstant.CREATE_ORDER_EXCHANGE_DLQ);
+        return BindingBuilder.bind(queue).to(exchange);
     }
 
     @Bean

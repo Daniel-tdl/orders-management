@@ -17,7 +17,8 @@ public class SaveOrderListener {
 
     @RabbitListener(queues = QueueConstant.CREATE_ORDER)
     public void saveOrderCreated(OrderEvent event) {
+        log.info("Pedido {} processando.", event.getCode());
         orderUseCase.saveOrder(event);
-        log.info("Pedido {} salvo na base com sucesso.", event.getCode());
+
     }
 }
