@@ -10,7 +10,10 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.DateTimeFormat.ISO;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -19,12 +22,14 @@ import java.util.List;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class OrderRequest {
 
-    private static final String DATETIME_JSON_PATTERN = "yyyy-MM-dd'T'hh:mm:ss";
+    private static final String DATETIME_JSON_PATTERN = "yyyy-MM-dd'T'hh:mm:ss.SSSZ";
 
     @NotEmpty(message = "Informe o codigo do pedido.")
     private String code;
 
 //    @JsonFormat(pattern = DATETIME_JSON_PATTERN)
+    @DateTimeFormat(iso = ISO.DATE_TIME)
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     @NotNull(message = "Informe a data do pedido.")
     private LocalDateTime date;
 

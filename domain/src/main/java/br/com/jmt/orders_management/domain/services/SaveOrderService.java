@@ -17,6 +17,12 @@ public class SaveOrderService implements SaveOrderUseCase {
 
     @Override
     public void saveOrder(OrderEvent orderEvent) {
+        var totalPrice = orderEvent.getProducts()
+                .stream()
+                .mapToDouble(OrderEvent.Product::getPrice)
+                .sum();
+
+        orderEvent.setTotalPrice(totalPrice);
         orderPort.saveOrder(orderEvent);
     }
 }

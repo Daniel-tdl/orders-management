@@ -17,6 +17,7 @@ public class OrderEvent {
 
     private String code;
     private String date;
+    private Double totalPrice;
     private List<Product> products;
 
     @AllArgsConstructor
