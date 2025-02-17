@@ -13,7 +13,7 @@ Arquitetura utilizada: Hexagonal
 
 # Recursos
 
-#### [POST /order/create]
+#### [POST /order/create] - Criar Pedidos
 ```javascript
 curl --request POST \
   --url http://localhost:8080/order/create \
@@ -35,7 +35,7 @@ curl --request POST \
 '
 ```
 
-#### [GET /order]
+#### [GET /order] - Busca de Pedidos paginados 
 ```javascript
 curl --request GET \
   --url http://localhost:8080/order \
